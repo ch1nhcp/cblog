@@ -7,6 +7,15 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
 
+//middleware de xu ly request gui len tu form
+app.use(
+  express.urlencoded({
+    extended: true, // la thu vien body-parser dc tich hop san trong expressJS
+  })
+);
+//middleware de xu ly request gui len tu code js
+app.use(express.json());
+
 //HTTP logger
 app.use(morgan("combined"));
 
@@ -30,6 +39,12 @@ app.get("/news", (req, res) => {
 
 app.get("/search", (req, res) => {
   res.render("search");
+});
+
+app.post("/search", (req, res) => {
+  console.log(req.body);
+
+  res.send("");
 });
 
 app.listen(port, () => {
