@@ -7,6 +7,11 @@ const port = 3000;
 
 const route = require("./routes"); // sẽ tự tìm đến file index.js trong folder routes
 
+const db = require("./config/db");
+
+//connect to DB
+db.connect();
+
 app.use(express.static(path.join(__dirname, "public")));
 
 //middleware de xu ly request gui len tu form
