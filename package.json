@@ -4,7 +4,7 @@
   "description": "my simple blog",
   "main": "src/index.js",
   "scripts": {
-    "beautiful": "lint-staged", // sau khi cau hinh lint-staged va husky thi co the bo di
+    "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
