@@ -22,6 +22,8 @@ const Course = new Schema({
     type: Date,
     default: Date.now,
   },
+  slug: { type: String, slug: "name", unique: true },
+  videoId: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Course", Course);
