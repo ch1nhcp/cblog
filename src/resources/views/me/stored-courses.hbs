@@ -7,16 +7,21 @@
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Level</th>
-        <th scope="col">Created time</th>
+        <th scope="col" colspan="2">Created time</th>
       </tr>
     </thead>
     <tbody>
       {{#each courses}}
         <tr>
+          {{! sử dụng helper do template engine hỗ trợ bên file index,js }}
           <th scope="row">{{sum @index 1}}</th>
           <td>{{this.name}}</td>
           <td>{{this.level}}</td>
-          <td>@{{this.createdAt}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+            <a href="http://" class="btn btn-link">Xoá</a>
+          </td>
         </tr>
       {{/each}}
     </tbody>

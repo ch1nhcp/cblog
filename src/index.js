@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const methodOverride = require("method-override");
+
 const handlebars = require("express-handlebars");
 const app = express();
 const port = 3000;
@@ -23,6 +25,8 @@ app.use(
 //middleware de xu ly request gui len tu code js
 app.use(express.json());
 
+app.use(methodOverride("_method"));
+
 //HTTP logger
 app.use(morgan("combined"));
 
@@ -32,7 +36,7 @@ app.engine(
   handlebars({
     extname: ".hbs",
     helpers: {
-      sum: (a, b) => a + b,
+      sum: (a, b) => a + b, // sử dụng hàm này để gen ra số thứ tự của khoá học trong stored-courses
     },
   })
 );
