@@ -46,6 +46,13 @@ class CourseController {
       .then(() => res.redirect("/me/stored/courses")) // chuyen huong ve danh sach courses sau khi update
       .catch(next);
   }
+
+  //[DELETE] /courses/:id
+  destroy(req, res, next) {
+    Course.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect("back")) // chuyen huong ve danh sach courses sau khi update thong qua http request header
+      .catch(next);
+  }
 }
 
 module.exports = new CourseController();
