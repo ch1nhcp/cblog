@@ -49,7 +49,7 @@ class CourseController {
 
   //[DELETE] /courses/:id
   destroy(req, res, next) {
-    Course.deleteOne({ _id: req.params.id })
+    Course.delete({ _id: req.params.id })
       .then(() => res.redirect("back")) // chuyen huong ve danh sach courses sau khi update thong qua http request header
       .catch(next);
   }
