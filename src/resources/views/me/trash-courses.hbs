@@ -41,7 +41,7 @@
         <tr>
           <td colspan="5" class="text-center">
             Thùng rác trống
-            <a href="/me/courses/create">Danh sach khoa hoc</a>
+            <a href="/me/stored/courses/">Danh sach khoa hoc</a>
           </td>
         </tr>
 
@@ -73,7 +73,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Bạn có thực sự muốn xoá khoá học này?
+        Bạn có thực sự muốn xoá vĩnh viễn khoá học này?
       </div>
       <div class="modal-footer">
         <button
@@ -93,11 +93,13 @@
 
 {{! Delete hidden form }}
 <form name="delete-course-form" method="POST"></form>
+<form name="restore-course-form" method="POST"></form>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var courseId;
     var deleteForm = document.forms['delete-course-form'];
+    var restoreForm = document.forms['restore-course-form'];
     var btnDeleteCourse = document.getElementById("btn-delete-course"); //Show dialog confirm 
     var restoreBtn = $('.btn-restore')
     // When dialog confirm clicked 
@@ -111,14 +113,17 @@
     //When delete course btn clicked
     btnDeleteCourse.onclick = function() {
         deleteForm.action = '/courses/' +
-            courseId + '?_method=DELETE';
+            courseId + '/force?_method=DELETE';
         deleteForm.submit(); // gửi submit để chạy hàm destroy
     }
 
-  restoreBtn.click(function(e) {
-    e.preventDefault();
-
-    console.log($(this).data("id"))
-  })
+    //Restore btn clicked
+    restoreBtn.click(function(e) {
+      e.preventDefault();
+      
+      var courseId = $(this).data("id")
+      restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH';
+      restoreForm.submit(); // gửi submit để chạy hàm destroy
+    })
 })
 </script>
